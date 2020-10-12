@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Mobile</string>
+
+    <string-array name="Categories">
+        <item>Article</item>
+        <item>Image</item>
+        <item>Drawing</item>
+    </string-array>
+
+    <string name="Article_grenouille">
+        Le processus, appelé le test de Hogben, était simple : l\'urine de la femme supposée enceinte était injectée dans les ovaires de la grenouille. Si cette dernière pondait dans les 24h suivant l\'injection, cela signifiait que la femme était enceinte. Lire aussi : Pour rester en bonne santé, prenez un chien !
+    </string>
+
+
 </resources>
