@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
 public class HomeListFragment extends ListFragment implements AdapterView.OnItemClickListener{
@@ -31,7 +32,27 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-        Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+        //System.out.println(getListView().getItemAtPosition(position).toString());
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+        switch (getListView().getItemAtPosition(position).toString()) {
+            case "Article":
+                Article article = new Article();
+                ft.replace(R.id.container, article, "article");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
+
+            case "Image":
+                break;
+
+            case "Drawing":
+                break;
+
+        }
+
     }
 
 }
