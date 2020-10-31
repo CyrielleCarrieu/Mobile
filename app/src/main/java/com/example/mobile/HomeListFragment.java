@@ -57,7 +57,6 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
-
         }
 
     }

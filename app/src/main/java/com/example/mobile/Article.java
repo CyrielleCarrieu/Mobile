@@ -17,19 +17,4 @@ public class Article extends Fragment {
         View view = inflater.inflate(R.layout.article_view, container, false);
         return view;
     }
-
-   /* @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.Categories, android.R.layout.simple_list_item_1);
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(this);
-
-    }*/
-
-    public void setText(String item) {
-        TextView view = (TextView) getView().findViewById(R.id.articleText);
-        view.setText(item);
-    }
 }

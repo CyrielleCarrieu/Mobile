@@ -50,4 +50,6 @@ public class FeedbackTouch extends View {
         paint.setColor(Color.BLUE);
         canvas.drawCircle(x,y, 40, paint);
     }
+
+
 }
