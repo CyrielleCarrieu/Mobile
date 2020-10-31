@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/articleText"
-        android:name="com.example.mobile.Article"
+    <ImageView
+        android:id="@+id/image"
+        android:name="com.example.mobile.Image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Article_grenouille">
-    </TextView>
+        android:src="">
+    </ImageView>
 
 </LinearLayout>
