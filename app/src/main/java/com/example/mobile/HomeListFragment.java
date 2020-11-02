@@ -63,6 +63,12 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
+            case "Text Input":
+                TextInput textInput = new TextInput();
+                ft.replace(R.id.container, textInput, "text input");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
         }
 
     }

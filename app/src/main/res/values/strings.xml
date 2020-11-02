@@ -6,6 +6,7 @@
         <item>Image</item>
         <item>Drawing</item>
         <item>Image Sequence</item>
+        <item>Text Input</item>
     </string-array>
 
     <string name="Article_grenouille">
