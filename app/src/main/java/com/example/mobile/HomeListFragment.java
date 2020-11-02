@@ -57,6 +57,12 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
+            case "Image Sequence":
+                SequenceImage sequenceImage = new SequenceImage();
+                ft.replace(R.id.container, sequenceImage, "sequence image");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
         }
 
     }
