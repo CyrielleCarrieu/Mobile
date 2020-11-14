@@ -15,8 +15,7 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_fragment, container, false);
         return view;
     }
@@ -31,8 +30,7 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-        Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
-        System.out.println(getListView().getItemAtPosition(position).toString());
+        //Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
 
@@ -66,6 +64,12 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
             case "Text Input":
                 TextInput textInput = new TextInput();
                 ft.replace(R.id.container, textInput, "text input");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
+            case "Motion Sensors":
+                MotionSensors motionSensors = new MotionSensors();
+                ft.replace(R.id.container, motionSensors, "motion sensors");
                 ft.addToBackStack(null);
                 ft.commit();
                 break;

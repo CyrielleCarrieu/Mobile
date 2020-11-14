@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private HomeListFragment homeListFragment;
@@ -15,11 +16,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         homeListFragment = new HomeListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeListFragment).commit();
-
     }
 
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
     }
+
+
 }
