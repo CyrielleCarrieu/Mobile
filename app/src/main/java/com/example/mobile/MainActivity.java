@@ -2,6 +2,7 @@ package com.example.mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.View;
 

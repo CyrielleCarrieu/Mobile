@@ -79,6 +79,12 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
+            case "Photo":
+                Photo photo = new Photo();
+                ft.replace(R.id.container, photo, "photo");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
         }
 
     }

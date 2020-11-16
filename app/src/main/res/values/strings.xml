@@ -9,6 +9,7 @@
         <item>Text Input</item>
         <item>Motion Sensors</item>
         <item>Vibration</item>
+        <item>Photo</item>
     </string-array>
 
     <string name="Article_grenouille">
