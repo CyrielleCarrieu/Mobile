@@ -24,6 +24,7 @@ public class TextInput extends Fragment {
     private Button buttonUbuntu;
     private Button buttonNoir;
     private Button buttonRouge;
+    private Button buttonCyan;
     private AutoCompleteTextView myTextField;
     private View v;
 
@@ -39,6 +40,7 @@ public class TextInput extends Fragment {
         this.buttonUbuntu = (Button) v.findViewById(R.id.button3);
         this.buttonNoir = (Button) v.findViewById(R.id.button4);
         this.buttonRouge = (Button) v.findViewById(R.id.button5);
+        this.buttonCyan = (Button) v.findViewById(R.id.button6);
 
 
         this.buttonRoboto.setOnClickListener(new Button.OnClickListener() {
@@ -78,6 +80,13 @@ public class TextInput extends Fragment {
             @Override
             public void onClick(View v) {
                 myTextField.setTextColor(Color.RED);
+            }
+        });
+        this.buttonCyan.setOnClickListener(new Button.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                myTextField.setTextColor(Color.CYAN);
             }
         });
 
