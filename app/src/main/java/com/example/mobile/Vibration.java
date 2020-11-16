@@ -4,18 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.RadioGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Vibration   extends Fragment implements AdapterView.OnTouchListener{
+public class Vibration extends Fragment {
 
     private View v;
     private MainActivity main;
@@ -31,12 +29,23 @@ public class Vibration   extends Fragment implements AdapterView.OnTouchListener
 
         vibrator = (Vibrator) main.getSystemService(Context.VIBRATOR_SERVICE);
 
-        switchVibration.setOnTouchListener(this);
+        switchVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                final long[] pattern = {0, 1000};
+                if (switchVibration.isChecked()){
+                    vibrator.vibrate(pattern, 0);
+                }
+                else {
+                    vibrator.cancel();
+                }
+            }
+        });
+        //switchVibration.setOnTouchListener(this);
 
         return v;
     }
 
-    @Override
+    /*@Override
     public boolean onTouch(View v, MotionEvent event) {
         final long[] pattern = {2000, 1000};
         if (switchVibration.isChecked()){
@@ -46,5 +55,5 @@ public class Vibration   extends Fragment implements AdapterView.OnTouchListener
             vibrator.cancel();
         }
         return false;
-    }
+    }*/
 }
