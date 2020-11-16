@@ -73,6 +73,12 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
+            case "Vibration":
+                Vibration vibration = new Vibration();
+                ft.replace(R.id.container, vibration, "vibration");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
         }
 
     }
