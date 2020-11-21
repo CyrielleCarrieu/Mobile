@@ -6,21 +6,23 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.List;
 
 import static android.content.Context.SENSOR_SERVICE;
 
-public class MotionSensors  extends Fragment implements SensorEventListener {
+public class MotionSensors  extends Fragment implements SensorEventListener,  AdapterView.OnTouchListener {
     View v;
     MainActivity main;
     SensorManager mySensorManager;
@@ -28,13 +30,16 @@ public class MotionSensors  extends Fragment implements SensorEventListener {
     Sensor gyroscopeSensor;
     Sensor magneticSensor;
     Sensor rotationSensor;
+    private float x1, x2, y1, y2;
+    private static int MIN_DISTANCE = 150;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.motion_sensors_view, container, false);
-        main = (MainActivity) requireActivity();
-        mySensorManager = (SensorManager) main.getSystemService(SENSOR_SERVICE);
+        //main = (MainActivity) requireActivity();
+        mySensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
+        v.setOnTouchListener(this);
 
         accelerometerSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         gyroscopeSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -106,4 +111,32 @@ public class MotionSensors  extends Fragment implements SensorEventListener {
     }
 
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                y2 = event.getY();
+
+                float valueX = x2 - x1;
+                float valueY = y2 - y1;
+
+                if (Math.abs(valueX) > MIN_DISTANCE){
+                    if (x2 < x1){
+                        Vibration vibration = new Vibration();
+                        ft.replace(R.id.container, vibration, "vibration");
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+
+                }
+        }
+        return false;
+    }
 }

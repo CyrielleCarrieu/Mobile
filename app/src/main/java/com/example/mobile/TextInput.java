@@ -42,7 +42,6 @@ public class TextInput extends Fragment {
         this.buttonRouge = (Button) v.findViewById(R.id.button5);
         this.buttonCyan = (Button) v.findViewById(R.id.button6);
 
-
         this.buttonRoboto.setOnClickListener(new Button.OnClickListener() {
 
             @Override

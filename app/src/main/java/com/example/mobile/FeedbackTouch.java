@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 public class FeedbackTouch extends View {
 
     private Paint paint = new Paint();
+
     private float x = -100;
     private float y = -100;
 
@@ -47,8 +48,8 @@ public class FeedbackTouch extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(Color.BLUE);
-        canvas.drawCircle(x,y, 40, paint);
+        paint.setColor(Color.GREEN);
+        canvas.drawCircle(x,y, 30, paint);
     }
 
 

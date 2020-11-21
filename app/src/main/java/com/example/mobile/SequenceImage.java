@@ -16,20 +16,19 @@ public class SequenceImage extends Fragment implements AdapterView.OnTouchListen
 
     View v;
     int pos = 0;
+    int[] images = {R.drawable.chaton, R.drawable.chiot, R.drawable.alpaga, R.drawable.lapin, R.drawable.loutre};
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.sequence_image_view, container, false);
-
         v.setOnTouchListener(this);
-
         return v;
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        int[] images = {R.drawable.chaton, R.drawable.chiot, R.drawable.alpaga, R.drawable.lapin, R.drawable.loutre};
+
         if(event.getAction() == MotionEvent.ACTION_DOWN){
             ImageView myImageView = (ImageView)v.findViewById(R.id.sequenceimage);
             if( event.getX() < v.getWidth() / 2 ) {
@@ -37,7 +36,7 @@ public class SequenceImage extends Fragment implements AdapterView.OnTouchListen
                     pos = 4;
                 }
                 else {
-                    pos = (pos - 1)%5;
+                    pos = pos - 1;
                 }
             }
             else {

@@ -6,40 +6,40 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-public class Photo extends Fragment implements SurfaceHolder.Callback {
+public class Photo extends Fragment implements SurfaceHolder.Callback, AdapterView.OnTouchListener {
 
     private View v;
-    private MainActivity main;
     private static Camera camera = null;
     private SurfaceView surfaceCamera;
     private Boolean isPreview;
     private FileOutputStream stream;
 
+    private float x1, x2, y1, y2;
+    private static int MIN_DISTANCE = 150;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.photo_view, container, false);
-        main = (MainActivity) requireActivity();
-
-        /*// Nous mettons l'application en plein écran et sans barre de titre
-        main.getWindow().setFormat(PixelFormat.TRANSLUCENT);
-        main.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        main.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+        v.setOnTouchListener(this);
 
         isPreview = false;
 
@@ -86,11 +86,11 @@ public class Photo extends Fragment implements SurfaceHolder.Callback {
             values.put(MediaStore.Audio.Media.MIME_TYPE, "image/jpeg");
 
             // Support de stockage
-            Uri taken = main.getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            Uri taken = getActivity().getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     values);
 
             // Ouverture du flux pour la sauvegarde
-            stream = (FileOutputStream) main.getContentResolver().openOutputStream(
+            stream = (FileOutputStream) getActivity().getContentResolver().openOutputStream(
                     taken);
 
             camera.takePicture(null, pictureCallback, pictureCallback);
@@ -133,15 +133,20 @@ public class Photo extends Fragment implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+
+
         // Si le mode preview est lancé alors nous le stoppons
         if (isPreview) {
             camera.stopPreview();
         }
         // Nous récupérons les paramètres de la caméra
         Camera.Parameters parameters = camera.getParameters();
+        List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
 
-        // Nous changeons la taille
-        parameters.setPreviewSize(width, height);
+        // You need to choose the most appropriate previewSize for your app
+        Camera.Size previewSize = previewSizes.get(0);
+        parameters.setPreviewSize(previewSize.width, previewSize.height);
+
 
         // Nous appliquons nos nouveaux paramètres
         camera.setParameters(parameters);
@@ -185,5 +190,34 @@ public class Photo extends Fragment implements SurfaceHolder.Callback {
             camera.release();
             camera = null;
         }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        System.out.println("Coucou je suis onTouch");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                y2 = event.getY();
+
+                float valueX = x2 - x1;
+
+                if (Math.abs(valueX) > MIN_DISTANCE) {
+                    if (x2 < x1) {
+                        Vibration vibration = new Vibration();
+                        ft.replace(R.id.container, vibration, "vibration");
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                }
+                break;
+        }
+        return false;
     }
 }
