@@ -24,7 +24,6 @@ import static android.content.Context.SENSOR_SERVICE;
 
 public class MotionSensors  extends Fragment implements SensorEventListener,  AdapterView.OnTouchListener {
     View v;
-    MainActivity main;
     SensorManager mySensorManager;
     Sensor accelerometerSensor;
     Sensor gyroscopeSensor;
@@ -37,7 +36,6 @@ public class MotionSensors  extends Fragment implements SensorEventListener,  Ad
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.motion_sensors_view, container, false);
-        //main = (MainActivity) requireActivity();
         mySensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         v.setOnTouchListener(this);
 
