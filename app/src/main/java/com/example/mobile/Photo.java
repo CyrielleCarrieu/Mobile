@@ -2,7 +2,6 @@ package com.example.mobile;
 
 import android.content.ContentValues;
 import android.hardware.Camera;
-import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,8 +10,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +24,7 @@ public class Photo extends Fragment implements SurfaceHolder.Callback {
 
     private View v;
     private MainActivity main;
-    private Camera camera;
+    private static Camera camera = null;
     private SurfaceView surfaceCamera;
     private Boolean isPreview;
     private FileOutputStream stream;

@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static android.content.Context.SENSOR_SERVICE;
@@ -45,22 +47,29 @@ public class MotionSensors  extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         TextView myText;
+        DecimalFormat df = new DecimalFormat("###.##");
+        df.setRoundingMode(RoundingMode.HALF_UP);
         switch (event.sensor.getType()){
             case Sensor.TYPE_ACCELEROMETER:
                 myText = v.findViewById(R.id.textViewAccelerometre);
-                myText.setText(event.values[0]+"\n"+event.values[1]+"\n"+event.values[2]);
+                myText.setText(df.format(event.values[0])+"\n"+df.format(event.values[1])+"\n"+
+                        df.format(event.values[2]));
                 break;
             case Sensor.TYPE_GYROSCOPE:
                 myText = v.findViewById(R.id.textViewGyroscope);
-                myText.setText(event.values[0]+"\n"+event.values[1]+"\n"+event.values[2]);
+                myText.setText(df.format(event.values[0])+"\n"+df.format(event.values[1])+"\n"+
+                        df.format(event.values[2]));
                 break;
             case Sensor.TYPE_MAGNETIC_FIELD:
                 myText = v.findViewById(R.id.textViewMagnetometer);
-                myText.setText(event.values[0]+"\n"+event.values[1]+"\n"+event.values[2]);
+                myText.setText(df.format(event.values[0])+"\n"+df.format(event.values[1])+"\n"+
+                        df.format(event.values[2]));
                 break;
             case Sensor.TYPE_ROTATION_VECTOR:
                 myText = v.findViewById(R.id.textViewRotation);
-                myText.setText(event.values[0]+"\n"+event.values[1]+"\n"+event.values[2]+"\n"+event.values[3]+"\n"+event.values[4]);
+                myText.setText(df.format(event.values[0])+"\n"+df.format(event.values[1])+"\n"+
+                        df.format(event.values[2])+"\n"+df.format(event.values[3])+"\n"+
+                        df.format(event.values[4]));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + event.sensor.getName());
