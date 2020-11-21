@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +24,6 @@ public class Photo extends Fragment {
 
     private View v;
     private Button buttonImage;
-    private VideoView videoView;
     private ImageView imageView;
     private static final int REQUEST_ID_IMAGE_CAPTURE = 100;
 
@@ -35,7 +33,6 @@ public class Photo extends Fragment {
         v = inflater.inflate(R.layout.photo_view, container, false);
 
         this.buttonImage = (Button) v.findViewById(R.id.button_image);
-        this.videoView = (VideoView) v.findViewById(R.id.videoView);
         this.imageView = (ImageView) v.findViewById(R.id.imageView);
 
         this.buttonImage.setOnClickListener(new Button.OnClickListener() {
