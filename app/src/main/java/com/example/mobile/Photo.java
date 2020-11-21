@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -48,8 +49,15 @@ public class Photo extends Fragment {
     }
 
     private void captureImage() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        this.startActivityForResult(intent, REQUEST_ID_IMAGE_CAPTURE);
+        TextView textView = v.findViewById(R.id.textViewError);
+        try {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            this.startActivityForResult(intent, REQUEST_ID_IMAGE_CAPTURE);
+            textView.setText("");
+        } catch (Exception e) {
+            textView.setText("Action échouée! \n Veuillez autoriser l'accès à l'appareil photo!");
+            e.printStackTrace();
+        }
     }
 
 
