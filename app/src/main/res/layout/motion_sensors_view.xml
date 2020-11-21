@@ -21,7 +21,7 @@
         android:layout_height="70dp"
         android:layout_row="0"
         android:layout_column="1"
-        android:text="TextView"
+        android:text=""
         tools:layout_editor_absoluteX="226dp"
         tools:layout_editor_absoluteY="66dp" />
 
@@ -41,7 +41,7 @@
         android:layout_height="70dp"
         android:layout_row="1"
         android:layout_column="1"
-        android:text="TextView"
+        android:text=""
         tools:layout_editor_absoluteX="226dp"
         tools:layout_editor_absoluteY="183dp" />
 
@@ -61,7 +61,7 @@
         android:layout_height="70dp"
         android:layout_row="2"
         android:layout_column="1"
-        android:text="TextView"
+        android:text=""
         tools:layout_editor_absoluteX="226dp"
         tools:layout_editor_absoluteY="312dp" />
 
@@ -81,7 +81,7 @@
         android:layout_height="99dp"
         android:layout_row="3"
         android:layout_column="1"
-        android:text="TextView"
+        android:text=""
         tools:layout_editor_absoluteX="226dp"
         tools:layout_editor_absoluteY="472dp" />
 

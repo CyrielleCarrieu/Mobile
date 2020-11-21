@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +23,6 @@ import androidx.fragment.app.FragmentTransaction;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import static android.content.ContentValues.TAG;
 import static android.content.Context.SENSOR_SERVICE;
 
 public class Vibration extends Fragment implements AdapterView.OnTouchListener, SensorEventListener {
@@ -92,6 +90,7 @@ public class Vibration extends Fragment implements AdapterView.OnTouchListener, 
                         ft.commit();
                     }
                 }
+                vibrator.cancel();
                 break;
         }
         return false;
@@ -99,10 +98,10 @@ public class Vibration extends Fragment implements AdapterView.OnTouchListener, 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        TextView myText;
         DecimalFormat df = new DecimalFormat("###.##");
         df.setRoundingMode(RoundingMode.HALF_UP);
         if( event.sensor.getType() == Sensor.TYPE_GYROSCOPE ) {
+            // Test si le telephone est statique
             if( (df.format(event.values[0]).equals("0") || df.format(event.values[0]).equals("-0") ) &&
                     (df.format(event.values[1]).equals("0")  || df.format(event.values[1]).equals("-0") ) &&
                     (df.format(event.values[2]).equals("0")  || df.format(event.values[2]).equals("-0") ) ) {
@@ -110,7 +109,7 @@ public class Vibration extends Fragment implements AdapterView.OnTouchListener, 
                 vibrator.vibrate(pattern, 0);
                 switchVibration.setChecked(true);
             }
-            else {
+            else if(!switchVibration.isChecked()){
                 vibrator.cancel();
                 switchVibration.setChecked(false);
             }
