@@ -5,10 +5,8 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
@@ -34,13 +32,13 @@ public class TextInput extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v =  inflater.inflate(R.layout.text_input_view, container, false);
 
-        this.myTextField = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
-        this.buttonRoboto = (Button) v.findViewById(R.id.button1);
-        this.buttonSCP = (Button) v.findViewById(R.id.button2);
-        this.buttonUbuntu = (Button) v.findViewById(R.id.button3);
-        this.buttonNoir = (Button) v.findViewById(R.id.button4);
-        this.buttonRouge = (Button) v.findViewById(R.id.button5);
-        this.buttonCyan = (Button) v.findViewById(R.id.button6);
+        this.myTextField = v.findViewById(R.id.autoCompleteTextView);
+        this.buttonRoboto = v.findViewById(R.id.button1);
+        this.buttonSCP = v.findViewById(R.id.button2);
+        this.buttonUbuntu = v.findViewById(R.id.button3);
+        this.buttonNoir = v.findViewById(R.id.button4);
+        this.buttonRouge = v.findViewById(R.id.button5);
+        this.buttonCyan = v.findViewById(R.id.button6);
 
         this.buttonRoboto.setOnClickListener(new Button.OnClickListener() {
 

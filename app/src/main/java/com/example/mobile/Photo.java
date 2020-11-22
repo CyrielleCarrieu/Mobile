@@ -32,8 +32,8 @@ public class Photo extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.photo_view, container, false);
 
-        this.buttonImage = (Button) v.findViewById(R.id.button_image);
-        this.imageView = (ImageView) v.findViewById(R.id.imageView);
+        this.buttonImage = v.findViewById(R.id.button_image);
+        this.imageView = v.findViewById(R.id.imageView);
 
         this.buttonImage.setOnClickListener(new Button.OnClickListener() {
             @Override

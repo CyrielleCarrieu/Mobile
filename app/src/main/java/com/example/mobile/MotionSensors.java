@@ -20,19 +20,18 @@ import java.text.DecimalFormat;
 import static android.content.Context.SENSOR_SERVICE;
 
 public class MotionSensors  extends Fragment implements SensorEventListener {
-    View v;
-    SensorManager mySensorManager;
-    Sensor accelerometerSensor;
-    Sensor gyroscopeSensor;
-    Sensor magneticSensor;
-    Sensor rotationSensor;
+    private View v;
+    private SensorManager mySensorManager;
+    private Sensor accelerometerSensor;
+    private Sensor gyroscopeSensor;
+    private Sensor magneticSensor;
+    private Sensor rotationSensor;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.motion_sensors_view, container, false);
         mySensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
-
         accelerometerSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         gyroscopeSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         magneticSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -76,29 +75,29 @@ public class MotionSensors  extends Fragment implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Rien
+        // No need
     }
 
     @Override
     public void onStart() {
         super.onStart();
         if (accelerometerSensor != null) {
-            mySensorManager.registerListener((SensorEventListener) this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mySensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
         if (gyroscopeSensor != null) {
-            mySensorManager.registerListener((SensorEventListener) this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mySensorManager.registerListener(this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
         if (magneticSensor != null) {
-            mySensorManager.registerListener((SensorEventListener) this, magneticSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mySensorManager.registerListener(this, magneticSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
         if (rotationSensor != null) {
-            mySensorManager.registerListener((SensorEventListener) this, rotationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mySensorManager.registerListener(this, rotationSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mySensorManager.unregisterListener((SensorEventListener) this);
+        mySensorManager.unregisterListener(this);
     }
 }

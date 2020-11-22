@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 
 public class SequenceImage extends Fragment implements AdapterView.OnTouchListener{
 
-    View v;
-    int pos = 0;
-    int[] images = {R.drawable.chaton, R.drawable.chiot, R.drawable.alpaga, R.drawable.lapin, R.drawable.loutre};
+    private View v;
+    private int pos = 0;
+    private int[] images = {R.drawable.chaton, R.drawable.chiot, R.drawable.alpaga, R.drawable.lapin, R.drawable.loutre};
 
     @Nullable
     @Override
@@ -30,7 +30,7 @@ public class SequenceImage extends Fragment implements AdapterView.OnTouchListen
     public boolean onTouch(View v, MotionEvent event) {
 
         if(event.getAction() == MotionEvent.ACTION_DOWN){
-            ImageView myImageView = (ImageView)v.findViewById(R.id.sequenceimage);
+            ImageView myImageView = v.findViewById(R.id.sequenceimage);
             if( event.getX() < v.getWidth() / 2 ) {
                 if( pos == 0) {
                     pos = 4;

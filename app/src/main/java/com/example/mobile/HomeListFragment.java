@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
@@ -30,7 +29,6 @@ public class HomeListFragment extends ListFragment implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-        //Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
 

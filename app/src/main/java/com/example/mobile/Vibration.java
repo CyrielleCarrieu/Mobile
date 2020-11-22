@@ -118,20 +118,20 @@ public class Vibration extends Fragment implements AdapterView.OnTouchListener, 
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+        // No need
     }
 
     @Override
     public void onStart() {
         super.onStart();
         if (gyroscopeSensor != null) {
-            mySensorManager.registerListener((SensorEventListener) this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mySensorManager.registerListener(this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mySensorManager.unregisterListener((SensorEventListener) this);
+        mySensorManager.unregisterListener(this);
     }
 }
